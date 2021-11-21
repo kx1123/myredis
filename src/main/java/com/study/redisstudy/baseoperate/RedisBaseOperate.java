@@ -22,6 +22,7 @@ public class RedisBaseOperate {
 //        testHash(jedis);
 //        testList(jedis);
 //        testSet(jedis);
+
     }
 
     public static void testString(Jedis jedis) {
