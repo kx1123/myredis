@@ -1,8 +1,13 @@
 package com.study.redisstudy.baseoperate;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +19,21 @@ import java.util.Set;
  * @description
  */
 @Slf4j
+@RestController
+@RequestMapping("/redisBaseOperate")
 public class RedisBaseOperate {
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
+    @RequestMapping("/testTemplate")
+    public void testTemplate() {
+        stringRedisTemplate.opsForValue().set("testTemplate", "11");
+    }
+
+
     public static void main(String[] args) {
+
         Jedis jedis = new Jedis("localhost");
         testString(jedis);
 //        testHash(jedis);
